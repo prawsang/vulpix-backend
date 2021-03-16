@@ -1,0 +1,61 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:jest/recommended",
+    "plugin:security/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "plugins": ["sort-requires", "jest", "security"],
+  "env": { "es6": true, "node": true, "jest/globals": true },
+  "rules": {
+    "no-var": "error",
+    "no-console": "error",
+    "array-callback-return": "warn",
+    "complexity": ["error", 10],
+    "consistent-return": "error",
+    "default-case": "error",
+    "default-case-last": "error",
+    "no-eval": "error",
+    "no-return-await": "error",
+    "eol-last": ["error", "always"],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" }
+    ],
+    "no-unreachable-loop": "error",
+    "no-loop-func": "error",
+    "no-multi-str": "error",
+    "no-nested-ternary": "warn",
+    "no-duplicate-imports": "error",
+    "prefer-const": "error",
+    "prefer-template": "error",
+    "prefer-rest-params": "error",
+    "no-useless-rename": "error",
+    "quotes": ["error", "single"],
+    "semi": "off",
+    "block-spacing": "error",
+    "linebreak-style": ["error", "unix"],
+    "arrow-parens": ["error", "always"],
+    "sort-imports": "error",
+    "template-curly-spacing": ["error", "never"],
+
+    "sort-requires/sort-requires": "error",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
+    "jest/no-test-callback": 0,
+    "jest/expect-expect": [
+      "error",
+      {
+        "assertFunctionNames": ["expect", "request.*.expect"]
+      }
+    ],
+    "jest/no-export": "off",
+    "jest/valid-describe": "off"
+  }
+}
