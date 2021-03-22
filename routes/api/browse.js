@@ -6,7 +6,7 @@ const { errorResponse } = require('../../utils/error')
 // Sample API
 router.get('/all', async (req, res) => {
 	try {
-		const applications = await Application.find()
+		const applications = await Application.findAll()
 		res.json(applications)
 	} catch (err) {
 		res.status(500).json(errorResponse(err))

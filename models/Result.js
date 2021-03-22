@@ -1,153 +1,166 @@
-const mongoose = require('mongoose')
+const Sequelize = require('sequelize')
+const db = require('../config/db')
+const App = require('./Application')
 
-const resultSchema = new mongoose.Schema({
-	application: { type: mongoose.Schema.Types.ObjectId, ref: 'App' },
+const Result = db.define('results', {
+	id: {
+		type: Sequelize.INTEGER,
+		primaryKey: true,
+		autoIncrement: true,
+	},
+	applicationId: {
+		type: Sequelize.STRING,
+		allowNull: false,
+	},
 	version: {
-		type: String,
-		required: true,
+		type: Sequelize.STRING,
+		allowNull: false,
 	},
 	androidVersion: {
-		type: String,
-		required: true,
+		type: Sequelize.STRING,
+		allowNull: false,
 	},
 	vulpixScore: {
-		type: Number,
-		required: true,
+		type: Sequelize.INTEGER,
+		allowNull: false,
 	},
 	dateAdded: {
-		type: Date,
-		required: true,
+		type: Sequelize.DATE,
+		allowNull: false,
 	},
-	pi: new mongoose.Schema({
-		advertiserId: {
-			type: Boolean,
-			required: true,
-		},
-		androidId: {
-			type: Boolean,
-			required: true,
-		},
-		deviceSerialNumber: {
-			type: Boolean,
-			required: true,
-		},
-		googleServicesId: {
-			type: Boolean,
-			required: true,
-		},
-		imei: {
-			type: Boolean,
-			required: true,
-		},
-		macAddress: {
-			type: Boolean,
-			required: true,
-		},
-		cellId: {
-			type: Boolean,
-			required: true,
-		},
-		simSerialNumber: {
-			type: Boolean,
-			required: true,
-		},
-		imsi: {
-			type: Boolean,
-			required: true,
-		},
-		localAreaCode: {
-			type: Boolean,
-			required: true,
-		},
-		phoneNumber: {
-			type: Boolean,
-			required: true,
-		},
-		age: {
-			type: Boolean,
-			required: true,
-		},
-		audioRecording: {
-			type: Boolean,
-			required: true,
-		},
-		calendar: {
-			type: Boolean,
-			required: true,
-		},
-		contactBook: {
-			type: Boolean,
-			required: true,
-		},
-		country: {
-			type: Boolean,
-			required: true,
-		},
-		ccv: {
-			type: Boolean,
-			required: true,
-		},
-		dob: {
-			type: Boolean,
-			required: true,
-		},
-		email: {
-			type: Boolean,
-			required: true,
-		},
-		gender: {
-			type: Boolean,
-			required: true,
-		},
-		name: {
-			type: Boolean,
-			required: true,
-		},
-		password: {
-			type: Boolean,
-			required: true,
-		},
-		photo: {
-			type: Boolean,
-			required: true,
-		},
-		physicalAddress: {
-			type: Boolean,
-			required: true,
-		},
-		relationshipStatus: {
-			type: Boolean,
-			required: true,
-		},
-		sms: {
-			type: Boolean,
-			required: true,
-		},
-		ssn: {
-			type: Boolean,
-			required: true,
-		},
-		timezone: {
-			type: Boolean,
-			required: true,
-		},
-		username: {
-			type: Boolean,
-			required: true,
-		},
-		video: {
-			type: Boolean,
-			required: true,
-		},
-		webBrowsingLog: {
-			type: Boolean,
-			required: true,
-		},
-		gps: {
-			type: Boolean,
-			required: true,
-		},
-	}),
+	// PI
+	advertiserId: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	androidId: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	deviceSerialNumber: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	googleServicesId: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	imei: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	macAddress: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	cellId: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	simSerialNumber: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	imsi: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	localAreaCode: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	phoneNumber: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	age: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	audioRecording: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	calendar: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	contactBook: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	country: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	ccv: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	dob: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	email: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	gender: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	name: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	password: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	photo: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	physicalAddress: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	relationshipStatus: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	sms: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	ssn: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	timezone: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	username: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	video: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	webBrowsingLog: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
+	gps: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false,
+	},
 })
 
-module.exports = mongoose.model('Result', resultSchema)
+Result.belongsTo(App, {
+	foreignKey: 'applicationId',
+})
+
+module.exports = Result

@@ -1,27 +1,37 @@
-const mongoose = require('mongoose')
+const Sequelize = require('sequelize')
+const db = require('../config/db')
+const Category = require('./Category')
 
-const appSchema = new mongoose.Schema({
-	name: {
-		type: String,
-		required: true,
-	},
+const App = db.define('apps', {
 	identifier: {
-		type: String,
+		type: Sequelize.STRING,
+		primaryKey: true,
+	},
+	name: {
+		type: Sequelize.STRING,
 		required: true,
+		allowNull: false,
 	},
 	devName: {
-		type: String,
-		required: true,
+		type: Sequelize.STRING,
+		allowNull: false,
 	},
 	vulpixScore: {
-		type: Number,
-		required: true,
+		type: Sequelize.INTEGER,
+		allowNull: false,
 	},
 	iconUrl: {
-		type: String,
-		required: false,
+		type: Sequelize.STRING,
 	},
-	category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
+	categoryId: {
+		type: Sequelize.INTEGER,
+		allowNull: false,
+	},
 })
 
-module.exports = mongoose.model('App', appSchema)
+App.belongsTo(Category, {
+	foreignKey: 'categoryId',
+	as: 'category',
+})
+
+module.exports = App
