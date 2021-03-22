@@ -10,22 +10,18 @@ const App = db.define('apps', {
 	name: {
 		type: Sequelize.STRING,
 		required: true,
-		allowNull: false,
 	},
 	devName: {
 		type: Sequelize.STRING,
-		allowNull: false,
 	},
 	vulpixScore: {
 		type: Sequelize.INTEGER,
-		allowNull: false,
 	},
 	iconUrl: {
 		type: Sequelize.STRING,
 	},
 	categoryId: {
 		type: Sequelize.INTEGER,
-		allowNull: false,
 	},
 })
 
