@@ -24,10 +24,6 @@ const Result = db.define('results', {
 		type: Sequelize.INTEGER,
 		allowNull: false,
 	},
-	dateAdded: {
-		type: Sequelize.DATE,
-		allowNull: false,
-	},
 	// PI
 	advertiserId: {
 		type: Sequelize.BOOLEAN,

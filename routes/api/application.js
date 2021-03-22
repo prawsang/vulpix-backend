@@ -1,8 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const { addApplication } = require('../../controllers/application')
+const {
+	addApplication,
+	editApplication,
+} = require('../../controllers/application')
 
-// Add an application with or without results to the database
+// Add an application without results to the database
 router.post('/', addApplication)
+
+// Add more information to the application afterwards
+router.put('/', editApplication)
 
 module.exports = router
