@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../config/db')
 const Category = require('./Category')
+const Result = require('./Result')
 
 const App = db.define('apps', {
 	identifier: {
@@ -14,20 +15,20 @@ const App = db.define('apps', {
 	devName: {
 		type: Sequelize.STRING,
 	},
-	vulpixScore: {
-		type: Sequelize.INTEGER,
-	},
 	iconUrl: {
 		type: Sequelize.STRING,
 	},
-	categoryId: {
-		type: Sequelize.INTEGER,
+	categorySlug: {
+		type: Sequelize.STRING,
 	},
 })
 
 App.belongsTo(Category, {
-	foreignKey: 'categoryId',
-	as: 'category',
+	foreignKey: 'categorySlug',
+})
+
+App.hasMany(Result, {
+	foreignKey: 'applicationId',
 })
 
 module.exports = App

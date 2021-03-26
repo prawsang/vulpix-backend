@@ -1,10 +1,7 @@
-const Sequelize = require('sequelize')
-const Op = Sequelize.Op
 const Application = require('../models/Application')
 const { errorResponse } = require('../utils/error')
 
 const addApplication = async (req, res) => {
-	console.log(req.body)
 	const { identifier } = req.body
 
 	await Application.create({
@@ -15,28 +12,18 @@ const addApplication = async (req, res) => {
 }
 
 const editApplication = async (req, res) => {
-	const {
-		identifier,
-		name,
-		devName,
-		vulpixScore,
-		iconUrl,
-		categoryId,
-	} = req.body
+	const { identifier, name, devName, iconUrl, categorySlug } = req.body
 
 	await Application.update(
 		{
 			name,
 			devName,
-			vulpixScore,
 			iconUrl,
-			categoryId,
+			categorySlug,
 		},
 		{
 			where: {
-				identifier: {
-					[Op.eq]: identifier,
-				},
+				identifier: identifier,
 			},
 		},
 	)

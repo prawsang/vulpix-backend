@@ -2,10 +2,9 @@ const Sequelize = require('sequelize')
 const db = require('../config/db')
 
 const Category = db.define('categories', {
-	id: {
-		type: Sequelize.INTEGER,
+	slug: {
 		primaryKey: true,
-		autoIncrement: true,
+		type: Sequelize.STRING,
 	},
 	name: {
 		type: Sequelize.STRING,

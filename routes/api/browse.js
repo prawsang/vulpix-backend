@@ -3,6 +3,8 @@ const router = express.Router()
 const Application = require('../../models/Application')
 const { errorResponse } = require('../../utils/error')
 
+const { getAResult } = require('../../controllers/browse')
+
 // Sample API
 router.get('/all', async (req, res) => {
 	try {
@@ -12,5 +14,7 @@ router.get('/all', async (req, res) => {
 		res.status(500).json(errorResponse(err))
 	}
 })
+
+router.get('/application', getAResult)
 
 module.exports = router

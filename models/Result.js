@@ -155,8 +155,4 @@ const Result = db.define('results', {
 	},
 })
 
-Result.belongsTo(App, {
-	foreignKey: 'applicationId',
-})
-
 module.exports = Result
