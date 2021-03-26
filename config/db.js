@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-module.exports = new Sequelize('vulpix', 'admin', 'vulpixCP44', {
+module.exports = new Sequelize(process.env.DATABASE_URL, {
 	host: 'localhost',
 	dialect: 'postgres',
 	pool: {

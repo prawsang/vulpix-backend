@@ -1,17 +1,17 @@
 const express = require('express')
 const dotenv = require('dotenv')
-const db = require('./config/db')
 
 // const Result = require('./models/Result')
 
 const envFile = process.env.NODE_ENV ? `${process.env.NODE_ENV}.env` : '.env'
 dotenv.config({ path: envFile })
 
+const db = require('./config/db')
 db.authenticate()
 	.then(() => console.log('Database connected...'))
 	.catch((err) => console.log(err))
 
-// db.sync({ force: true })
+db.sync()
 
 const app = express()
 app.use(express.json())
