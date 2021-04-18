@@ -37,16 +37,13 @@ const getCategories = async (req, res) => {
 		.catch((err) => res.status(500).json(errorResponse(err)))
 }
 
-// Get apps in category or search :D
-const getAppsInCategory = async (req, res) => {
-	const { categorySlug } = req.params
+// Search Apps
+const searchApps = async (req, res) => {
 	const { page, limit, searchTerm } = req.query
-
 	const appsPage = await paginate({
 		model: Application,
 		params: {
 			where: {
-				categorySlug: categorySlug,
 				[Op.or]: [
 					{
 						identifier: {
@@ -65,6 +62,14 @@ const getAppsInCategory = async (req, res) => {
 					},
 				],
 			},
+			include: [
+				{
+					model: Result,
+					attributes: ['vulpixScore'],
+					order: [['createdAt', 'DESC']],
+					limit: 1,
+				},
+			],
 		},
 		page,
 		limit,
@@ -77,8 +82,41 @@ const getAppsInCategory = async (req, res) => {
 	res.json(appsPage)
 }
 
+// Get apps in category :D
+const getAppsInCategory = async (req, res) => {
+	const { categorySlug } = req.params
+	const { page, limit } = req.query
+
+	const appsPage = await paginate({
+		model: Application,
+		params: {
+			where: {
+				categorySlug: categorySlug,
+			},
+			include: [
+				{
+					model: Result,
+					attributes: ['vulpixScore'],
+					order: [['createdAt', 'DESC']],
+					limit: 1,
+				},
+			],
+		},
+		page,
+		limit,
+	})
+
+	if (appsPage.errors) {
+		res.status(500).json(errorResponse(appsPage.errors))
+		console.log(appsPage.errors)
+		return
+	}
+	res.json(appsPage)
+}
+
 module.exports = {
 	getAResult,
 	getCategories,
 	getAppsInCategory,
+	searchApps,
 }

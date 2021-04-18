@@ -1,5 +1,6 @@
 const express = require('express')
 const dotenv = require('dotenv')
+const cors = require('cors')
 
 // const Result = require('./models/Result')
 
@@ -14,6 +15,7 @@ db.authenticate()
 db.sync()
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/api', require('./routes'))
