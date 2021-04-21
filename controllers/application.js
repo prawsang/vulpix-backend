@@ -2,10 +2,14 @@ const Application = require('../models/Application')
 const { errorResponse } = require('../utils/error')
 
 const addApplication = async (req, res) => {
-	const { identifier } = req.body
+	const { identifier, name, devName, iconUrl, categorySlug } = req.body
 
 	await Application.create({
 		identifier,
+		name,
+		devName,
+		iconUrl,
+		categorySlug,
 	})
 		.then((rows) => res.send(rows))
 		.catch((err) => res.status(500).json(errorResponse(err)))
