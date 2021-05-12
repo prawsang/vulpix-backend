@@ -20,6 +20,10 @@ const Result = db.define('results', {
 		type: Sequelize.STRING,
 		allowNull: false,
 	},
+	error: {
+		type: Sequelize.STRING,
+		allowNull: true,
+	},
 	vulpixScore: {
 		type: Sequelize.INTEGER,
 		allowNull: false,

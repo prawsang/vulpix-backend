@@ -9,6 +9,7 @@ const addResult = async (req, res) => {
 		androidVersion,
 		vulpixScore,
 		testingMethod,
+		error,
 		// PI
 		advertiserId,
 		androidId,
@@ -50,6 +51,7 @@ const addResult = async (req, res) => {
 		androidVersion,
 		vulpixScore,
 		testingMethod,
+		error,
 		// PI
 		advertiserId,
 		androidId,
