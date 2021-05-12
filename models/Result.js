@@ -24,6 +24,10 @@ const Result = db.define('results', {
 		type: Sequelize.INTEGER,
 		allowNull: false,
 	},
+	testingMethod: {
+		type: Sequelize.STRING,
+		allowNull: false,
+	},
 	// PI
 	advertiserId: {
 		type: Sequelize.BOOLEAN,
