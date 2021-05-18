@@ -21,6 +21,9 @@ const App = db.define('apps', {
 	categorySlug: {
 		type: Sequelize.STRING,
 	},
+	views: {
+		type: Sequelize.INTEGER,
+	},
 })
 
 App.belongsTo(Category, {

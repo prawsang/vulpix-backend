@@ -30,7 +30,9 @@ const getAResult = async (req, res) => {
 
 // Get all categories
 const getCategories = async (req, res) => {
-	await Category.findAll()
+	await Category.findAll({
+		order: [['name']],
+	})
 		.then((result) => {
 			res.send(result)
 		})

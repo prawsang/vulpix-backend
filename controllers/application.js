@@ -10,6 +10,7 @@ const addApplication = async (req, res) => {
 		devName,
 		iconUrl,
 		categorySlug,
+		views: 0,
 	})
 		.then((rows) => res.send(rows))
 		.catch((err) => res.status(500).json(errorResponse(err)))
@@ -35,7 +36,16 @@ const editApplication = async (req, res) => {
 		.catch((err) => res.status(500).json(errorResponse(err)))
 }
 
+const viewApplication = async (req, res) => {
+	const { identifier } = req.body
+
+	await Application.increment('views', { by: 1, where: { identifier } })
+		.then((rows) => res.send(rows))
+		.catch((err) => res.status(500).json(errorResponse(err)))
+}
+
 module.exports = {
 	addApplication,
 	editApplication,
+	viewApplication,
 }
