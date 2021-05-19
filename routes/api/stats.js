@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const cacheMiddleware = require('../../middlewares/cache')
 const {
 	byScore,
 	mostViewed,
@@ -8,10 +9,10 @@ const {
 	countLeakingAppsByCategory,
 } = require('../../controllers/stats')
 
-router.get('/by-score', byScore)
+router.get('/by-score', cacheMiddleware(900), byScore)
 router.get('/by-views', mostViewed)
-router.get('/by-criterion', mostLeakedCriterion)
-router.get('/by-category', mostLeakingCategory)
-router.get('/category-count', countLeakingAppsByCategory)
+router.get('/by-criterion', cacheMiddleware(900), mostLeakedCriterion)
+router.get('/by-category', cacheMiddleware(900), mostLeakingCategory)
+router.get('/category-count', cacheMiddleware(900), countLeakingAppsByCategory)
 
 module.exports = router

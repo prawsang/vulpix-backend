@@ -17,6 +17,7 @@
 		"express": "^4.17.1",
 		"http-status": "^1.4.2",
 		"jest": "^26.4.0",
+		"memory-cache": "^0.2.0",
 		"pg": "^8.5.1",
 		"pg-hstore": "^2.3.3",
 		"sequelize": "^6.6.1",
