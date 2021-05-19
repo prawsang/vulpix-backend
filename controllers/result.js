@@ -1,4 +1,4 @@
-const { Op, HostNotFoundError } = require('sequelize')
+const { Op } = require('sequelize')
 const Result = require('../models/Result')
 const { errorResponse } = require('../utils/error')
 const { calculateScore } = require('../utils/score')
