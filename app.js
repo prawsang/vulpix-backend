@@ -12,7 +12,7 @@ db.authenticate()
 	.then(() => console.log('Database connected...'))
 	.catch((err) => console.log(err))
 
-db.sync()
+// db.sync()
 
 const app = express()
 app.use(cors())
