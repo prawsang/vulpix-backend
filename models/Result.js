@@ -3,17 +3,14 @@ const db = require('../config/db')
 const App = require('./Application')
 
 const Result = db.define('results', {
-	id: {
-		type: Sequelize.INTEGER,
-		primaryKey: true,
-		autoIncrement: true,
-	},
 	applicationId: {
 		type: Sequelize.STRING,
+		primaryKey: true,
 		allowNull: false,
 	},
 	version: {
 		type: Sequelize.STRING,
+		primaryKey: true,
 		allowNull: false,
 	},
 	androidVersion: {
