@@ -5,7 +5,7 @@ const Result = require('../models/Result')
 const { errorResponse } = require('../utils/error')
 
 const byScore = async (req, res) => {
-	const { category, order } = req.query
+	const { category, order, limit } = req.query
 	try {
 		const results = await db.query(
 			`SELECT * from apps INNER
@@ -15,10 +15,11 @@ const byScore = async (req, res) => {
 		) temp ON apps."identifier" = temp."applicationId" 
 		${category ? `WHERE apps."categorySlug" = $categorySlug` : ''} 
 		ORDER BY "vulpixScore" ${order === 'asc' ? 'ASC' : 'DESC'}
-		LIMIT 100`,
+		LIMIT $limit`,
 			{
 				bind: {
 					categorySlug: category,
+					limit: limit || '100',
 				},
 				type: Sequelize.QueryTypes.SELECT,
 			},
@@ -29,6 +30,18 @@ const byScore = async (req, res) => {
 	}
 }
 
+const mostViewed = async (req, res) => {
+	try {
+		const results = await db.query(
+			`SELECT * FROM applications ORDER BY views LIMIT 100`,
+		)
+		res.send(results)
+	} catch (err) {
+		res.status(500).json(errorResponse(err))
+	}
+}
+
 module.exports = {
 	byScore,
+	mostViewed,
 }
