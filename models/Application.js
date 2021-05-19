@@ -15,9 +15,6 @@ const App = db.define('apps', {
 	devName: {
 		type: Sequelize.STRING,
 	},
-	iconUrl: {
-		type: Sequelize.STRING,
-	},
 	categorySlug: {
 		type: Sequelize.STRING,
 	},
