@@ -173,6 +173,7 @@ const addResult = async (req, res) => {
 			{
 				where: {
 					applicationId,
+					version,
 				},
 			},
 		)
