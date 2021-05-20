@@ -29,10 +29,6 @@ const Result = db.define('results', {
 		type: Sequelize.STRING,
 		allowNull: false,
 	},
-	requesterEmail: {
-		type: Sequelize.STRING,
-		allowNull: true,
-	},
 	// PI
 	advertiserId: {
 		type: Sequelize.BOOLEAN,
