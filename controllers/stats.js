@@ -3,7 +3,7 @@ const db = require('../config/db')
 const { errorResponse } = require('../utils/error')
 
 const byScore = async (req, res) => {
-	const { category, order, limit } = req.query
+	const { category, limit } = req.query
 	try {
 		const results = await db.query(
 			`SELECT * from apps INNER
@@ -12,7 +12,7 @@ const byScore = async (req, res) => {
 			FROM results ORDER BY "applicationId" ASC, "createdAt" DESC
 		) temp ON apps."identifier" = temp."applicationId" 
 		${category ? `WHERE apps."categorySlug" = $categorySlug` : ''} 
-		ORDER BY "vulpixScore" ${order === 'asc' ? 'ASC' : 'DESC'}
+		ORDER BY "vulpixScore" DESC
 		LIMIT $limit`,
 			{
 				bind: {
@@ -31,7 +31,13 @@ const byScore = async (req, res) => {
 const mostViewed = async (req, res) => {
 	try {
 		const results = await db.query(
-			`SELECT * FROM applications ORDER BY views LIMIT 100`,
+			`SELECT apps."name", apps."identifier", apps."categorySlug", apps."devName", results."vulpixScore",
+			results."applicationId"
+			FROM apps JOIN results ON apps."identifier" = results."applicationId" 
+			ORDER BY apps."views" LIMIT 100`,
+			{
+				type: Sequelize.QueryTypes.SELECT,
+			},
 		)
 		res.send(results)
 	} catch (err) {
@@ -48,6 +54,9 @@ const mostLeakedCriterion = async (req, res) => {
 			"contactBook", "country", "ccv", "dob", "email", "gender", "name", "password", 
 			"photo", "physicalAddress", "relationshipStatus", "sms", "ssn", "timezone", 
 			"username", "video", "webBrowsingLog", "gps" FROM results`,
+			{
+				type: Sequelize.QueryTypes.SELECT,
+			},
 		)
 
 		const count = {
@@ -86,7 +95,7 @@ const mostLeakedCriterion = async (req, res) => {
 		}
 
 		if (results) {
-			const data = results[0]
+			const data = results
 			data.forEach((row) => {
 				Object.keys(row).forEach((criterion) => {
 					if (row[criterion]) count[criterion] += 1
@@ -101,13 +110,18 @@ const mostLeakedCriterion = async (req, res) => {
 
 const mostLeakingCategory = async (req, res) => {
 	try {
-		const result = await db.query(`
+		const result = await db.query(
+			`
 			SELECT "categorySlug", AVG("vulpixScore")
 			FROM apps 
 			JOIN results ON "identifier" = "applicationId"
 			GROUP BY "categorySlug"
-		`)
-		res.send(result[0])
+		`,
+			{
+				type: Sequelize.QueryTypes.SELECT,
+			},
+		)
+		res.send(result)
 	} catch (err) {
 		res.status(500).json(errorResponse(err))
 	}
@@ -115,13 +129,18 @@ const mostLeakingCategory = async (req, res) => {
 
 const countLeakingAppsByCategory = async (req, res) => {
 	try {
-		const result = await db.query(`
+		const result = await db.query(
+			`
 			SELECT apps."categorySlug", count(*) FROM apps
 			JOIN results ON apps."identifier" = results."applicationId"
 			WHERE results."vulpixScore" >= 75
 			GROUP BY "categorySlug"
-		`)
-		res.send(result[0])
+		`,
+			{
+				type: Sequelize.QueryTypes.SELECT,
+			},
+		)
+		res.send(result)
 	} catch (err) {
 		res.status(500).json(errorResponse(err))
 	}
