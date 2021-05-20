@@ -34,7 +34,7 @@ const mostViewed = async (req, res) => {
 			`SELECT apps."name", apps."identifier", apps."categorySlug", apps."devName", results."vulpixScore",
 			results."applicationId"
 			FROM apps JOIN results ON apps."identifier" = results."applicationId" 
-			ORDER BY apps."views" LIMIT 100`,
+			ORDER BY apps."views" DESC LIMIT 100`,
 			{
 				type: Sequelize.QueryTypes.SELECT,
 			},
@@ -133,7 +133,7 @@ const countLeakingAppsByCategory = async (req, res) => {
 			`
 			SELECT apps."categorySlug", count(*) FROM apps
 			JOIN results ON apps."identifier" = results."applicationId"
-			WHERE results."vulpixScore" >= 75
+			WHERE results."vulpixScore" >= 50
 			GROUP BY "categorySlug"
 		`,
 			{
