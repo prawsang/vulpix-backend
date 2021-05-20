@@ -51,7 +51,7 @@ const calculateScore = (piResult) => {
 		piGroup = PII_TYPE[piElement].group
 
 		highImpact = PII_TYPE[piElement].impact
-		if (highImpact) {
+		if (highImpact && piResult[piElement]) {
 			leaksByGroup[piGroup] += 5
 		} else {
 			leaksByGroup[piGroup] += piResult[piElement] ? 1 : 0
