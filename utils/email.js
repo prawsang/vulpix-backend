@@ -32,14 +32,14 @@ const ERROR_MESSAGE = {
 const sendEmail = ({ email, error, applicationId }) => {
 	const messageOptions = {
 		subject: error
-			? 'Test Results for Your Requested Application are Ready'
-			: 'An Error has Occurred While Testing Your Requested Application',
+			? 'An Error has Occurred While Testing Your Requested Application'
+			: 'Test Results for Your Requested Application are Ready',
 		text: error
 			? `${
 					ERROR_MESSAGE[error] ||
 					'Technical issues were experienced during the testing of your requested application.'
-			  } \n \nApplication ID: ${applicationId} \n \nWe are sorry for your inconvinience, \n- Vulpix Team`
-			: `The testing results for your application is ready to be viewed at \n${process.env.FRONTEND_URL}/browse/application/${applicationId} \n \nApplication Id: ${applicationId} \n \nThank you for using VULPIX \n- VULPIX Team`,
+			  } \n \nApplication ID: ${applicationId} \n \nWe are sorry for your inconvinience. \n\n- Vulpix Team`
+			: `The testing results for your application is ready to be viewed at \n${process.env.FRONTEND_URL}/browse/application/${applicationId} \n \nApplication Id: ${applicationId} \n \nThank you for using VULPIX \n\n- VULPIX Team`,
 		to: email,
 		from: 'vulpix.project.chula@gmail.com',
 	}
