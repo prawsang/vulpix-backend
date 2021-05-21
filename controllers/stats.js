@@ -133,7 +133,7 @@ const countLeakingAppsByCategory = async (req, res) => {
 			`
 			SELECT apps."categorySlug", count(*) FROM apps
 			JOIN results ON apps."identifier" = results."applicationId"
-			WHERE results."vulpixScore" >= 50
+			WHERE results."vulpixScore" > 50
 			GROUP BY "categorySlug"
 		`,
 			{
