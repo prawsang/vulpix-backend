@@ -12,22 +12,9 @@ db.authenticate()
 
 // db.sync()
 
-const whitelist = [
-	'https://vulpix2.herokuapp.com/',
-	'http://vulpix2.herokuapp.com/',
-]
-const corsOptions = {
-	origin: function (origin, callback) {
-		if (whitelist.indexOf(origin) !== -1) {
-			callback(null, true)
-		} else {
-			callback(new Error('Not allowed by CORS'))
-		}
-	},
-}
-
 const app = express()
-app.use(cors(corsOptions))
+// app.use(cors())
+app.use(cors('https://vulpix2.herokuapp.com/'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/api', require('./routes'))
