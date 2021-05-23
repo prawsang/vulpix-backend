@@ -39,7 +39,7 @@ const sendEmail = ({ email, error, applicationId }) => {
 					ERROR_MESSAGE[error] ||
 					'Technical issues were experienced during the testing of your requested application.'
 			  } \n \nApplication ID: ${applicationId} \n \nWe are sorry for your inconvinience. \n\n- Vulpix Team`
-			: `The testing results for your application is ready to be viewed at \n${process.env.FRONTEND_URL}/browse/application/${applicationId} \n \nApplication Id: ${applicationId} \n \nThank you for using VULPIX \n\n- VULPIX Team`,
+			: `The testing results for your application is ready to be viewed at \n${process.env.FRONTEND_URL}/browse/application/${applicationId} \n \nApplication Id: ${applicationId} \n \nThank you for using VULPIX. \n\n- VULPIX Team`,
 		to: email,
 		from: 'vulpix.project.chula@gmail.com',
 	}
