@@ -9,7 +9,7 @@ const byScore = async (req, res) => {
 			`SELECT * from apps INNER
 		JOIN (
 			SELECT DISTINCT ON ("applicationId") results."vulpixScore", "applicationId" 
-			FROM results ORDER BY "applicationId" ASC, "createdAt" DESC
+			FROM results ORDER BY "applicationId" ASC, "updatedAt" DESC
 		) temp ON apps."identifier" = temp."applicationId" 
 		${category ? `WHERE apps."categorySlug" = $categorySlug` : ''} 
 		ORDER BY "vulpixScore" DESC
@@ -112,28 +112,9 @@ const mostLeakingCategory = async (req, res) => {
 	try {
 		const result = await db.query(
 			`
-			SELECT "categorySlug", AVG("vulpixScore")
+			SELECT "categorySlug", AVG("vulpixScore"), count("categorySlug")
 			FROM apps 
 			JOIN results ON "identifier" = "applicationId"
-			GROUP BY "categorySlug"
-		`,
-			{
-				type: Sequelize.QueryTypes.SELECT,
-			},
-		)
-		res.send(result)
-	} catch (err) {
-		res.status(500).json(errorResponse(err))
-	}
-}
-
-const countLeakingAppsByCategory = async (req, res) => {
-	try {
-		const result = await db.query(
-			`
-			SELECT apps."categorySlug", count(*) FROM apps
-			JOIN results ON apps."identifier" = results."applicationId"
-			WHERE results."vulpixScore" > 50
 			GROUP BY "categorySlug"
 		`,
 			{
@@ -151,5 +132,4 @@ module.exports = {
 	mostViewed,
 	mostLeakedCriterion,
 	mostLeakingCategory,
-	countLeakingAppsByCategory,
 }
