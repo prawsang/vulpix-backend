@@ -33,7 +33,7 @@ const sendEmail = ({ email, error, applicationId }) => {
 	const messageOptions = {
 		subject: error
 			? 'An Error has Occurred While Testing Your Requested Application'
-			: 'Test Results for Your Requested Application are Ready',
+			: 'Test Result for Your Requested Application is Ready',
 		text: error
 			? `${
 					ERROR_MESSAGE[error] ||

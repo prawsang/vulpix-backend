@@ -6,7 +6,6 @@ const { calculateScore } = require('../utils/score')
 const { TESTING_METHOD } = require('../utils/testingMethods')
 
 const addResult = async (req, res) => {
-	console.log(res.body)
 	// gather body data
 	const {
 		applicationId,
