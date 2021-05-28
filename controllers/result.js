@@ -87,6 +87,16 @@ const addResult = async (req, res) => {
 	let vulpixScore = 0
 	let newTestingMethod = testingMethod
 
+	if (error === 'ALREADY_TESTED_ERROR') {
+		sendEmail({
+			email: requesterEmail,
+			error,
+			applicationId,
+		})
+		res.sendStatus(200)
+		return
+	}
+
 	const formerResult = await Result.findOne({
 		where: {
 			applicationId,
