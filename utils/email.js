@@ -38,7 +38,7 @@ const getErrorMessage = (error, applicationId) => {
 			'Technical issues were experienced during the testing of your requested application.'
 		} \n \nApplication ID: ${applicationId} \n \nWe are sorry for your inconvinience. \n\n- Vulpix Team`
 	} else {
-		return `${ERROR_MESSAGE[error]} The result are available at \n${process.env.FRONTEND_URL}/browse/application/${applicationId} \n \nApplication Id: ${applicationId} \n \nThank you for using VULPIX. \n\n- VULPIX Team`
+		return `${ERROR_MESSAGE[error]} The result is available at \n${process.env.FRONTEND_URL}/browse/application/${applicationId} \n \nApplication Id: ${applicationId} \n \nThank you for using VULPIX. \n\n- VULPIX Team`
 	}
 }
 
