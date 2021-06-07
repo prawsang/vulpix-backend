@@ -22,4 +22,4 @@ services:
             DB_HOST: db
             DATABASE_URL: postgres://postgres:postgres@db:5432/vulpix_prod
             GMAIL_PASSWORD: ${GMAIL_PASSWORD}
-            FRONTEND_URL: ${FRONTEND_URL}
+            FRONTEND_URL: https://vulpix2.herokuapp.com
