@@ -1,13 +1,13 @@
 const Sequelize = require('sequelize')
 module.exports = new Sequelize(`${process.env.DATABASE_URL}?sslmode=require`, {
-	host: 'localhost',
+	host: process.env.DB_HOST,
 	dialect: 'postgres',
-	dialectOptions: {
-		ssl: {
-			require: true,
-			rejectUnauthorized: false, // <<<<<< YOU NEED THIS
-		},
-	},
+	// dialectOptions: {
+	// 	ssl: {
+	// 		require: true,
+	// 		rejectUnauthorized: false, // <<<<<< YOU NEED THIS
+	// 	},
+	// },
 	pool: {
 		max: 5,
 		min: 0,
