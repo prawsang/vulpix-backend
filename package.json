@@ -9,7 +9,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"heroku-postbuild": "npm install --production",
 		"migrate": "npx sequelize db:migrate && npx sequelize db:seed:all",
-		"migrate:production": "npx sequelize db:migrate --env production && npx sequelize db:seed:all"
+		"migrate:production": "npx sequelize db:migrate --env production && npx sequelize db:seed:all --env production"
 	},
 	"author": "",
 	"license": "ISC",
