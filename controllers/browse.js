@@ -49,17 +49,17 @@ const searchApps = async (req, res) => {
 				[Op.or]: [
 					{
 						identifier: {
-							[Op.substring]: searchTerm,
+							[Op.iLike]: `%${searchTerm}%`,
 						},
 					},
 					{
 						name: {
-							[Op.substring]: searchTerm,
+							[Op.iLike]: `%${searchTerm}%`,
 						},
 					},
 					{
 						devName: {
-							[Op.substring]: searchTerm,
+							[Op.iLike]: `%${searchTerm}%`,
 						},
 					},
 				],
@@ -68,7 +68,7 @@ const searchApps = async (req, res) => {
 				{
 					model: Result,
 					attributes: ['vulpixScore'],
-					order: [['createdAt', 'DESC']],
+					order: [['updatedAt', 'DESC']],
 					limit: 1,
 				},
 			],
@@ -99,7 +99,7 @@ const getAppsInCategory = async (req, res) => {
 				{
 					model: Result,
 					attributes: ['vulpixScore'],
-					order: [['createdAt', 'DESC']],
+					order: [['updatedAt', 'DESC']],
 					limit: 1,
 				},
 			],

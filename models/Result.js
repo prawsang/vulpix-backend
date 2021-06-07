@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize')
 const db = require('../config/db')
-const App = require('./Application')
 
 const Result = db.define('results', {
 	applicationId: {
