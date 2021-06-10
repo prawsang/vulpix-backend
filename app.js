@@ -1,6 +1,5 @@
 const express = require('express')
 const dotenv = require('dotenv')
-const cors = require('cors')
 
 const envFile = process.env.NODE_ENV ? `${process.env.NODE_ENV}.env` : '.env'
 dotenv.config({ path: envFile })
@@ -25,7 +24,7 @@ const connectDb = async () => {
 connectDb()
 
 const app = express()
-app.use(cors('http://localhost:3000'))
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/api', require('./routes'))
