@@ -23,17 +23,17 @@ FRONTEND_URL=YOUR_FRONTEND_URL
 Before starting, make sure to have port 5000 exposed. To see the current configuration, run `sudo ufw status`. If not enabled, run `sudo ufw allow 5000`.
 1. `sudo apt update`
 2. `sudo apt install nodejs`
-3. Check the installation by running `nodejs -v` and `npm -v`
+3. Check the installation by running `node -v` and `npm -v`
 4. Run `sudo npm install -g pm2`
 5. Run `sudo npm install -g yarn`
 6. Check the installation of yarn by running `yarn --version`
 7. Run `sudo apt install postgresql postgresql-contrib`
 8. Start postgresql `sudo systemctl start postgresql@12-main` . *This depends on the version of postgresql being installed, so watch for the start command in the command line when it is being installed.*
-9. Run `sudo -u postgresql psql` to open access the PostgreSQL prompt.
+9. Run `sudo -u postgres psql` to open access the PostgreSQL prompt.
 10. In the PostgreSQL prompt, run `CREATE DATABASE vulpix_prod;` *with the semicolon*.
 11. Then `ALTER USER postgres PASSWORD 'your_password';` *with the semicolon* to change the DB password.
 12. `\q` to exit the PostgreSQL prompt.
-13. `touch .env` and paste in the contents as below
+13. `cd` to the directory of the cloned repository and `touch .env` and paste in the contents as below
 ```
 ## .env
 
