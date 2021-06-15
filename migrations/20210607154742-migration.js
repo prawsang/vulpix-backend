@@ -80,7 +80,7 @@ module.exports = {
 			},
 			requesterEmail: {
 				type: Sequelize.STRING,
-				allowNull: false,
+				allowNull: true,
 			},
 			// PI
 			advertiserId: {
