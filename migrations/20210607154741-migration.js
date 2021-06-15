@@ -78,6 +78,10 @@ module.exports = {
 				type: Sequelize.STRING,
 				allowNull: false,
 			},
+			requesterEmail: {
+				type: Sequelize.STRING,
+				allowNull: false,
+			},
 			// PI
 			advertiserId: {
 				type: Sequelize.BOOLEAN,
