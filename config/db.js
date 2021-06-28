@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize')
 //postgres:vulpix@localhost:5432/vulpix?sslmode=require
 postgres: module.exports = new Sequelize(
-	`postgres://postgres:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+	process.env.DATABASE_URL ||
+		`postgres://postgres:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
 	{
 		host: process.env.DB_HOST,
 		dialect: 'postgres',
